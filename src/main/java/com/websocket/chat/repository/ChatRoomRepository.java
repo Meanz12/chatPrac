@@ -28,7 +28,7 @@ public class ChatRoomRepository {
     @PostConstruct
     private void init() {
         opsHashChatRoom = redisTemplate.opsForHash();
-        topics = new HashMap<>();
+        //topics = new HashMap<>();
     }
 
     public List<ChatRoom> findAllRoom() {
@@ -47,10 +47,9 @@ public class ChatRoomRepository {
         opsHashChatRoom.put(CHAT_ROOMS, chatRoom.getRoomId(), chatRoom);
         return chatRoom;
     }
+/*
+    // 채팅방 입장 : redis에 topic을 만들고 pub/sub 통신을 하기 위해 리스너를 설정한다.
 
-    /**
-     * 채팅방 입장 : redis에 topic을 만들고 pub/sub 통신을 하기 위해 리스너를 설정한다.
-     */
     public void enterChatRoom(String roomId) {
         ChannelTopic topic = topics.get(roomId);
         if (topic == null) {
@@ -63,4 +62,5 @@ public class ChatRoomRepository {
     public ChannelTopic getTopic(String roomId) {
         return topics.get(roomId);
     }
+*/
 }
